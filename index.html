@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#B85C38">
+<title>Invitation d’anniversaire</title>
+<meta property="og:title" content="Une invitation pour vous">
+<meta property="og:description" content="Ouvrez votre invitation d’anniversaire.">
+<meta property="og:image" content="photos/hero.jpg">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>✉️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Bodoni+Moda:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!-- ============================================================
+     ✏️ TEXTES À MODIFIER (tout est ici, en français)
+     ============================================================ -->
+<script>
+const CONFIG = {
+  prenom: "Précieuse",
+  initiales: "P",
+  dateTexte: "2 décembre",
+  dateISO: "2026-12-02T18:00:00",          // date du compte à rebours (AAAA-MM-JJTHH:MM:SS)
+  salle: "À mon domicile",
+  ville: "Italie",
+  adresse: "[adresse complète]",
+  rechercheMaps: "Italie",   // ce que Google Maps doit afficher
+  hashtag: "#PrecieuseAnniversaire",
+
+  accueil: "Un jour de plus, une grâce de plus. Merci d’être là, de près comme de loin.",
+
+  joieTitre: "Ma joie de voir ce jour arriver",
+  frise: [
+    { titre: "Merci, Éternel", texte: "Avant toute chose, je rends grâce à l’Éternel pour le souffle de chaque matin et pour chaque pas parcouru." },
+    { titre: "Une année de bénédictions", texte: "Les épreuves m’ont fait grandir, les victoires m’ont rendu humble. Tout est grâce." },
+    { titre: "Merci à vous", texte: "Votre présence, vos messages et vos prières comptent plus que tout. Que Dieu vous le rende au centuple." }
+  ],
+
+  galerieTitre: "Quelques souvenirs",
+
+  programmeTitre: "Le programme",
+  programme: "Cette année, je ne fêterai pas mon anniversaire : mes obligations professionnelles ne me le permettent pas. Votre pensée me touche déjà beaucoup, et j’accepte avec joie tous les cadeaux, de toute nature.",
+
+  lieuTitre: "Le lieu",
+
+  depotTitre: "Pour m’offrir un cadeau",
+  depotTexte: "Si vous souhaitez m’envoyer un présent, voici mes numéros de dépôt.",
+  depots: [
+    { nom: "Wave", valeur: "+398272839251" },
+    { nom: "Orange Money", valeur: "+398272839251" },
+    { nom: "RIB", valeur: "[votre RIB]" }
+  ],
+
+  merci: "Merci de bien vouloir m’apporter des présents"
+};
+</script>
+
+<style>
+:root{
+  --creme:#F5EEDF; --creme2:#EBDfc8; --terra:#B85C38; --terra2:#9A4A2B; --brun:#3B2318; --brun2:#5A3A2B;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--creme);color:var(--brun);font-family:'Jost',system-ui,sans-serif;font-weight:300;font-size:1.05rem;line-height:1.7;overflow-x:hidden;padding-bottom:env(safe-area-inset-bottom)}
+body.locked{overflow:hidden;height:100svh}
+img{display:block;max-width:100%}
+h2{font-family:'Bodoni Moda',Georgia,serif;font-weight:400;font-size:clamp(1.7rem,7vw,2.5rem);line-height:1.2;text-align:center;margin-bottom:1.6rem}
+.script{font-family:'Pinyon Script',cursive;font-weight:400}
+.petit{font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.22em;text-align:center}
+section{padding:5.5rem 1.5rem;max-width:640px;margin:0 auto}
+a:focus-visible,button:focus-visible{outline:2px solid var(--terra);outline-offset:3px}
+
+/* Apparition douce */
+.rv{opacity:0;transform:translateY(22px);transition:opacity 1.6s var(--ease),transform 1.6s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.mot{display:inline-block;opacity:0;transform:translateY(.5em);transition:opacity 1.3s var(--ease),transform 1.3s var(--ease)}
+.in .mot,.mot.in{opacity:1;transform:none}
+
+/* ===== Enveloppe ===== */
+#intro{position:fixed;inset:0;z-index:100;background:radial-gradient(circle at 50% 40%,#F8F1E3,var(--creme2));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3rem;padding:1.5rem;transition:opacity 1.6s var(--ease),visibility 0s 1.6s}
+#intro.fin{opacity:0;visibility:hidden;pointer-events:none}
+.intro-t{font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.3em;color:var(--brun2);text-align:center;transition:opacity .8s}
+.env{position:relative;width:min(86vw,360px);aspect-ratio:4/3;perspective:1100px;transition:transform 1.4s var(--ease) .9s}
+.env>*{position:absolute}
+.dos{inset:0;background:var(--terra2);border-radius:4px;box-shadow:0 24px 50px -18px rgba(59,35,24,.55)}
+.carte{left:7%;right:7%;top:6%;bottom:6%;background:var(--creme);border-radius:3px;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem;text-align:center;transition:transform 1.4s var(--ease) .8s;box-shadow:0 2px 10px rgba(59,35,24,.2)}
+.carte .script{font-size:2.6rem;color:var(--terra);line-height:1.1}
+.carte .petit{font-size:.62rem}
+.poche{inset:0;z-index:3;background:var(--terra);clip-path:polygon(0 0,50% 56%,100% 0,100% 100%,0 100%);border-radius:4px}
+.rabat{left:0;top:0;width:100%;height:58%;z-index:4;background:linear-gradient(#C46A44,var(--terra));clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top center;transition:transform 1s var(--ease),z-index 0s .45s}
+.cachet{left:50%;top:58%;width:64px;height:64px;margin:-32px 0 0 -32px;z-index:5;border-radius:50%;display:grid;place-items:center;color:#E9C9B0;font-family:'Pinyon Script',cursive;font-size:2rem;background:radial-gradient(circle at 35% 30%,#8E2F1E,#5E1A10 70%);box-shadow:0 3px 8px rgba(0,0,0,.4),inset 0 0 0 4px rgba(255,255,255,.07);transition:opacity .5s,transform .5s}
+.btn{font-family:'Cinzel',serif;font-size:.82rem;letter-spacing:.2em;color:var(--creme);background:var(--brun);border:0;padding:1.05rem 2rem;border-radius:999px;cursor:pointer;transition:background .6s,transform .6s,opacity .8s;text-decoration:none;display:inline-block}
+.btn:hover{background:var(--terra)}
+.ouvert .rabat{transform:rotateX(180deg);z-index:1}
+.ouvert .cachet{opacity:0;transform:scale(.6)}
+.ouvert .carte{transform:translateY(-58%) scale(1.06)}
+.ouvert .env{transform:translateY(12vh)}
+.ouvert .btn,.ouvert .intro-t{opacity:0;pointer-events:none}
+
+/* ===== Accueil ===== */
+.hero{position:relative;height:100svh;min-height:560px;max-width:none;padding:0;display:flex;align-items:flex-end;justify-content:center;text-align:center;color:var(--creme);overflow:hidden;background:var(--brun)}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.08);transition:transform 14s ease-out}
+.vu .hero img{transform:scale(1)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(59,35,24,.3),rgba(59,35,24,0) 30%,rgba(59,35,24,.35) 55%,rgba(59,35,24,.9))}
+.hero-in{position:relative;z-index:2;padding:1.5rem 1.5rem calc(2.2rem + env(safe-area-inset-bottom));width:100%}
+.hero .script{font-size:clamp(3.6rem,19vw,6.5rem);line-height:1;margin:.5rem 0}
+.hero .date{font-family:'Bodoni Moda',serif;font-size:1.1rem;font-style:italic;margin-bottom:1rem}
+.hero p.acc{max-width:22rem;margin:0 auto 1.4rem;opacity:.92;font-size:1rem;line-height:1.55}
+.cd{display:flex;justify-content:center;gap:.7rem}
+.cd div{min-width:64px;padding:.7rem .3rem;border:1px solid rgba(245,238,223,.45);border-radius:6px;backdrop-filter:blur(4px);background:rgba(59,35,24,.25)}
+.cd b{display:block;font-family:'Bodoni Moda',serif;font-weight:400;font-size:1.7rem;line-height:1.1}
+.cd span{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.15em}
+
+/* ===== Frise ===== */
+.frise{position:relative;padding-left:2.4rem;margin-top:2.5rem}
+.frise::before,.frise .trait{content:"";position:absolute;left:.55rem;top:.4rem;bottom:.4rem;width:1px;background:rgba(184,92,56,.25)}
+.frise .trait{background:var(--terra);transform-origin:top;transform:scaleY(var(--p,0));transition:transform .25s linear}
+.etape{position:relative;margin-bottom:2.8rem}
+.etape::before{content:"";position:absolute;left:-2.2rem;top:.45rem;width:11px;height:11px;border-radius:50%;background:var(--creme);border:1px solid var(--terra);transition:background 1s,transform 1s}
+.etape.on::before{background:var(--terra);transform:scale(1.25)}
+.etape h3{font-family:'Bodoni Moda',serif;font-weight:400;font-size:1.3rem;margin-bottom:.3rem;color:var(--terra2)}
+
+/* ===== Galerie ===== */
+.galerie{max-width:none;padding-left:0;padding-right:0}
+.pile{display:flex;flex-direction:column;gap:2.2rem;padding:0 1.5rem;max-width:520px;margin:0 auto}
+.ph{position:relative;overflow:hidden;border-radius:4px;aspect-ratio:4/5;width:86%;box-shadow:0 20px 40px -22px rgba(59,35,24,.6)}
+.ph:nth-child(even){align-self:flex-end}
+.ph img{position:absolute;left:0;top:-12%;width:100%;height:124%;object-fit:cover;will-change:transform}
+
+/* ===== Programme / lieu / dépôt ===== */
+.mot-prog{text-align:center;max-width:30rem;margin:0 auto}
+.fond{background:var(--brun);color:var(--creme);max-width:none}
+.fond>*{max-width:560px;margin-left:auto;margin-right:auto}
+.fond h2{color:var(--creme)}
+.adr{text-align:center;margin-bottom:1.4rem}
+.adr .script{font-size:2rem;color:var(--terra)}
+.carte-map{border:0;width:100%;height:280px;border-radius:6px;margin-bottom:1.6rem;filter:sepia(.25) saturate(.9)}
+.centre{text-align:center}
+.depot{display:flex;align-items:center;justify-content:space-between;gap:1rem;border:1px solid rgba(245,238,223,.3);border-radius:8px;padding:1rem 1.1rem;margin-bottom:.9rem}
+.depot small{display:block;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.2em;color:#E3B79B}
+.depot strong{font-weight:400;word-break:break-all}
+.copier{flex:none;font:inherit;font-size:.82rem;color:var(--creme);background:transparent;border:1px solid var(--terra);border-radius:999px;padding:.5rem 1rem;cursor:pointer;transition:background .5s}
+.copier:hover{background:var(--terra)}
+
+/* ===== Pied ===== */
+footer{text-align:center;padding:4rem 1.5rem calc(4rem + env(safe-area-inset-bottom));background:var(--creme2)}
+footer .script{font-size:3.4rem;color:var(--terra);line-height:1}
+footer p{margin:.8rem 0}
+footer .hash{font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.2em;color:var(--brun2)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms!important;transition-delay:0s!important;animation:none!important;scroll-behavior:auto!important}
+  .rv,.mot{opacity:1;transform:none}
+  .hero img{transform:none}
+}
+</style>
+</head>
+<body class="locked">
+
+<!-- Ouverture -->
+<div id="intro">
+  <div class="intro-t">VOUS ÊTES INVITÉ(E)</div>
+  <div class="env" aria-hidden="true">
+    <div class="dos"></div>
+    <div class="carte"><span class="petit">ANNIVERSAIRE</span><span class="script" data-k="prenom"></span><span class="petit" data-k="dateTexte"></span></div>
+    <div class="poche"></div>
+    <div class="rabat"></div>
+    <div class="cachet" data-k="initiales"></div>
+  </div>
+  <button class="btn" id="ouvrir" type="button">Ouvrir mon invitation</button>
+</div>
+
+<main id="site">
+  <section class="hero" id="accueil">
+    <img src="photos/hero.jpg" alt="Précieuse" style="object-position:50% 18%">
+    <div class="hero-in">
+      <div class="petit">MON ANNIVERSAIRE</div>
+      <div class="script" data-k="prenom"></div>
+      <div class="date" data-k="dateTexte"></div>
+      <p class="acc" data-k="accueil"></p>
+      <div class="cd" id="cd" aria-live="off">
+        <div><b id="j">0</b><span>JOURS</span></div>
+        <div><b id="h">0</b><span>HEURES</span></div>
+        <div><b id="m">0</b><span>MINUTES</span></div>
+        <div><b id="s">0</b><span>SECONDES</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="joie">
+    <div class="petit rv">GRATITUDE</div>
+    <h2 class="mots" data-k="joieTitre" style="margin-top:.8rem"></h2>
+    <div class="frise" id="frise"><div class="trait"></div></div>
+  </section>
+
+  <section class="galerie" id="galerie">
+    <h2 class="mots" data-k="galerieTitre"></h2>
+    <div class="pile">
+      <figure class="ph rv"><img src="photos/1.jpg" alt="Précieuse à la terrasse d’un café" style="object-position:50% 15%" loading="lazy"></figure>
+      <figure class="ph rv"><img src="photos/2.jpg" alt="Précieuse, rieuse" loading="lazy"></figure>
+      <figure class="ph rv"><img src="photos/3.jpg" alt="Précieuse sur le quai d’une gare" style="object-position:60% 50%" loading="lazy"></figure>
+      <figure class="ph rv"><img src="photos/4.jpg" alt="Précieuse en robe rayée" style="object-position:50% 8%" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <section id="programme">
+    <h2 class="mots" data-k="programmeTitre"></h2>
+    <p class="mot-prog rv" data-k="programme"></p>
+  </section>
+
+  <section id="lieu">
+    <h2 class="mots" data-k="lieuTitre"></h2>
+    <div class="adr rv"><div class="script" id="salle"></div><div data-k="adresse"></div></div>
+    <iframe class="carte-map rv" id="map" title="Carte Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <div class="centre rv"><a class="btn" id="iti" target="_blank" rel="noopener">Ouvrir l’itinéraire</a></div>
+  </section>
+
+  <section class="fond" id="depot">
+    <h2 class="mots" data-k="depotTitre"></h2>
+    <p class="centre rv" data-k="depotTexte" style="margin-bottom:1.8rem"></p>
+    <div id="depots"></div>
+  </section>
+</main>
+
+<footer>
+  <p class="rv" data-k="merci"></p>
+  <div class="script rv" id="fin-init"></div>
+  <p class="hash rv" data-k="hashtag"></p>
+</footer>
+
+<script>
+(function(){
+  var C = CONFIG, $ = function(s,r){return (r||document).querySelector(s)};
+  var reduit = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Textes
+  document.querySelectorAll('[data-k]').forEach(function(el){ el.textContent = C[el.dataset.k]; });
+  $('#salle').textContent = C.salle + ', ' + C.ville;
+  $('#fin-init').textContent = C.initiales;
+  var q = encodeURIComponent(C.rechercheMaps);
+  $('#map').src = 'https://www.google.com/maps?q=' + q + '&output=embed';
+  $('#iti').href = 'https://www.google.com/maps/dir/?api=1&destination=' + q;
+
+  // Frise
+  var fr = $('#frise');
+  C.frise.forEach(function(e){
+    var d = document.createElement('div'); d.className = 'etape rv';
+    var h = document.createElement('h3'); h.textContent = e.titre;
+    var p = document.createElement('p'); p.textContent = e.texte;
+    d.appendChild(h); d.appendChild(p); fr.appendChild(d);
+  });
+
+  // Dépôts
+  var dp = $('#depots');
+  C.depots.forEach(function(x){
+    var r = document.createElement('div'); r.className = 'depot rv';
+    var g = document.createElement('div');
+    var s = document.createElement('small'); s.textContent = x.nom.toUpperCase();
+    var v = document.createElement('strong'); v.textContent = x.valeur;
+    g.appendChild(s); g.appendChild(v);
+    var b = document.createElement('button'); b.className = 'copier'; b.type = 'button'; b.textContent = 'Copier';
+    b.addEventListener('click', function(){
+      var fin = function(){ b.textContent = 'Copié'; setTimeout(function(){ b.textContent = 'Copier'; }, 1800); };
+      if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(x.valeur).then(fin, fin); }
+      else { var t = document.createElement('textarea'); t.value = x.valeur; document.body.appendChild(t); t.select(); try{document.execCommand('copy')}catch(e){} document.body.removeChild(t); fin(); }
+    });
+    r.appendChild(g); r.appendChild(b); dp.appendChild(r);
+  });
+
+  // Titres mot par mot
+  document.querySelectorAll('.mots').forEach(function(h){
+    var mots = h.textContent.split(' '); h.textContent = '';
+    mots.forEach(function(m,i){
+      var s = document.createElement('span'); s.className = 'mot'; s.textContent = m;
+      s.style.transitionDelay = (i*0.22) + 's'; h.appendChild(s);
+      if (i < mots.length-1) h.appendChild(document.createTextNode(' '));
+    });
+  });
+
+  // Apparition au défilement
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.15, rootMargin:'0px 0px -6% 0px'});
+  document.querySelectorAll('.rv,.mots').forEach(function(el){ io.observe(el); });
+
+  // Compte à rebours
+  var cible = new Date(C.dateISO).getTime();
+  function tic(){
+    var d = Math.max(0, cible - Date.now()); if (isNaN(d)) d = 0;
+    $('#j').textContent = Math.floor(d/864e5);
+    $('#h').textContent = Math.floor(d%864e5/36e5);
+    $('#m').textContent = Math.floor(d%36e5/6e4);
+    $('#s').textContent = Math.floor(d%6e4/1e3);
+  }
+  tic(); setInterval(tic, 1000);
+
+  // Frise qui se dessine + parallaxe galerie
+  var trait = $('#frise .trait'), etapes = document.querySelectorAll('.etape'), imgs = document.querySelectorAll('.ph img'), ticking = false;
+  function maj(){
+    ticking = false;
+    var vh = window.innerHeight, r = fr.getBoundingClientRect();
+    var p = Math.min(1, Math.max(0, (vh*0.7 - r.top) / r.height));
+    fr.style.setProperty('--p', reduit ? 1 : p);
+    etapes.forEach(function(e){ if (reduit || e.getBoundingClientRect().top < vh*0.7) e.classList.add('on'); });
+    if (reduit) return;
+    imgs.forEach(function(im){
+      var f = im.parentNode.getBoundingClientRect();
+      var t = (f.top + f.height/2 - vh/2) / vh;           // -1 .. 1
+      im.style.transform = 'translate3d(0,' + (-t*f.height*0.1).toFixed(1) + 'px,0)';
+    });
+  }
+  window.addEventListener('scroll', function(){ if(!ticking){ ticking = true; requestAnimationFrame(maj); } }, {passive:true});
+  window.addEventListener('resize', maj); maj();
+
+  // Ouverture de l'enveloppe
+  var intro = $('#intro');
+  $('#ouvrir').addEventListener('click', function(){
+    intro.classList.add('ouvert');
+    var delai = reduit ? 200 : 3000;
+    setTimeout(function(){
+      intro.classList.add('fin');
+      document.body.classList.remove('locked');
+      document.body.classList.add('vu');
+      window.scrollTo(0,0); maj();
+    }, delai);
+  });
+})();
+</script>
+</body>
+</html>
